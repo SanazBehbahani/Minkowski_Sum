@@ -28,16 +28,18 @@ vector<vector<int> > delete_duplicate(vector<vector<int> > C)
     
 }
 
-// ***TODO: Compute the Minkowski Sum of two vectors***//
+// Compute the Minkowski Sum of two vectors
 vector<vector<int> > minkowski_sum(vector<vector<int> > A, vector<vector<int> > B)
 {
-    
-    
-    
-    
-    
-    
-    
+    vector<vector<int> > C;
+    for (int i = 0; i < A.size(); i++) {
+        for (int j = 0; j < B.size(); j++) {
+            // Compute the current sum
+            vector<int> Ci = { A[i][0] + B[j][0], A[i][1] + B[j][1] };
+            // Push it to the C vector
+            C.push_back(Ci);
+        }
+    }
     C = delete_duplicate(C);
     return C;
 }
