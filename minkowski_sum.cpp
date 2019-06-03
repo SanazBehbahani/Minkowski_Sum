@@ -119,6 +119,23 @@ void plot(vector<vector<double> > vec, string color)
     }
 }
 
+// Translate the configuration space toward the obstacle
+vector<vector<double> > shift_space(vector<vector<double> > B, vector<vector<double> > C)
+{
+    // Compute the obstacle and space centroids
+    vector<double> centroid_obstacle = compute_centroid(B);
+    vector<double> centroid_space = compute_centroid(C);
+    // Compute the translations deltas
+    double dx = centroid_space[0] - centroid_obstacle[0];
+    double dy = centroid_space[1] - centroid_obstacle[1];
+    // Translate the space
+    for (int i = 0; i < C.size(); i++) {
+        C[i][0] = C[i][0] - dx;
+        C[i][1] = C[i][1] - dy;
+    }
+    return C;
+}
+
 
 
 int main()
