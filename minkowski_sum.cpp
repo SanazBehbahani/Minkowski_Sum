@@ -180,7 +180,7 @@ int main()
     
     
     // Compute the minkowski sum of triangle A and B
-    vector<vector<int> > C;
+    vector<vector<double> > C;
     C = minkowski_sum(A, B);
 
     // Print the resulting vector
