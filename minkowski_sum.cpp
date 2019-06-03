@@ -87,6 +87,24 @@ vector<vector<double> > compute_angle(vector<vector<double> > vec)
     return vec;
 }
 
+// Sort the vector in increasing angle (clockwise) for plotting
+vector<vector<double> > sort_vector(vector<vector<double> > vec)
+{
+    vector<vector<double> > sorted_vec = compute_angle(vec);
+    // Change the 0 angle to 90 degrees
+    for (int i = 0; i < sorted_vec.size(); i++) {
+        if (sorted_vec[i][2] == 0)
+            sorted_vec[i][2] = 90.0;
+    }
+    // Sort with respect to the 3rd column(angles)
+    sort(sorted_vec.begin(),
+        sorted_vec.end(),
+        [](const vector<double>& a, const vector<double>& b) {
+            return a[2] < b[2];
+        });
+    return sorted_vec;
+}
+
 
 int main()
 {
