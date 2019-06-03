@@ -136,6 +136,32 @@ vector<vector<double> > shift_space(vector<vector<double> > B, vector<vector<dou
     return C;
 }
 
+// Draw A, B and C shapes
+void draw_shapes(vector<vector<double> > A, vector<vector<double> > B, vector<vector<double> > C)
+{
+    //Graph Format
+    plt::title("Minkowski Sum");
+    plt::xlim(-5, 5);
+    plt::ylim(-5, 5);
+    plt::grid(true);
+
+    // Draw triangle A
+    plot(A, "b-");
+
+    // Draw triangle B
+    plot(B, "r-");
+
+    // Draw configuration space C
+    // Trasnlate the C space
+    vector<vector<double> > shifted_C = shift_space(B, C);
+    plot(shifted_C, "y-");
+    // Plot the original C shape
+    plot(C, "g-");
+    
+    //Save the image and close the plot
+    plt::save("../images/Minkowski_Sum.png");
+    plt::clf();
+}
 
 
 int main()
