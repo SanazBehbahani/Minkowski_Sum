@@ -104,6 +104,21 @@ vector<vector<double> > sort_vector(vector<vector<double> > vec)
         });
     return sorted_vec;
 }
+// Process the shapes and plot them
+void plot(vector<vector<double> > vec, string color)
+{
+    // Sort the vector coordinates in clockwise
+    vector<vector<double> > sorted_vec;
+    sorted_vec = sort_vector(vec);
+    // Add the first element to the end of the vector
+    sorted_vec.push_back(sorted_vec[0]);
+    // Loop through vector original size
+    for (int i = 0; i < sorted_vec.size() - 1; i++) {
+        // Connect coordinate point and plot the lines (x1,x2)(y1,y2)
+        plt::plot({ sorted_vec[i][0], sorted_vec[i + 1][0] }, { sorted_vec[i][1], sorted_vec[i + 1][1] }, color);
+    }
+}
+
 
 
 int main()
