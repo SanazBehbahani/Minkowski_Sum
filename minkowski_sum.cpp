@@ -1,8 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include "../lib/matplotlibcpp.h"
+#include <math.h>
 
 using namespace std;
+namespace plt = matplotlibcpp;
 
 // Print 2D vectors coordinate values
 void print2DVector(vector<vector<int> > vec)
@@ -182,6 +185,9 @@ int main()
 
     // Print the resulting vector
     print2DVector(C);
+
+    // Draw all the shapes
+    draw_shapes(A, B, C);
 
     return 0;
 }
