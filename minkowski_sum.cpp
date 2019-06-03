@@ -8,7 +8,7 @@ using namespace std;
 namespace plt = matplotlibcpp;
 
 // Print 2D vectors coordinate values
-void print2DVector(vector<vector<int> > vec)
+void print2DVector(vector<vector<double> > vec)
 {
      // Sorting the vector for grading purpose
     sort(vec.begin(), vec.end());
@@ -21,12 +21,12 @@ void print2DVector(vector<vector<int> > vec)
 }
 
 // Check for duplicate coordinates inside a 2D vector and delete them
-vector<vector<int> > delete_duplicate(vector<vector<int> > C)
+vector<vector<double> > delete_duplicate(vector<vector<double> > C)
 {
     // Sort the C vector
     sort(C.begin(), C.end());
     // Initialize a non duplicated vector
-    vector<vector<int> > Cn;
+    vector<vector<double> > Cn;
     for (int i = 0; i < C.size() - 1; i++) {
         // Check if it's a duplicate coordinate
         if (C[i] != C[i + 1]) {
@@ -38,13 +38,13 @@ vector<vector<int> > delete_duplicate(vector<vector<int> > C)
 }
 
 // Compute the Minkowski Sum of two vectors
-vector<vector<int> > minkowski_sum(vector<vector<int> > A, vector<vector<int> > B)
+vector<vector<int> > minkowski_sum(vector<vector<double> > A, vector<vector<double> > B)
 {
-    vector<vector<int> > C;
+    vector<vector<double> > C;
     for (int i = 0; i < A.size(); i++) {
         for (int j = 0; j < B.size(); j++) {
             // Compute the current sum
-            vector<int> Ci = { A[i][0] + B[j][0], A[i][1] + B[j][1] };
+            vector<double> Ci = { A[i][0] + B[j][0], A[i][1] + B[j][1] };
             // Push it to the C vector
             C.push_back(Ci);
         }
@@ -170,9 +170,9 @@ void draw_shapes(vector<vector<double> > A, vector<vector<double> > B, vector<ve
 int main()
 {
     // Define the coordinates of triangle A and B using 2D vectors
-    vector<vector<int> > A(3, vector<int>(2));
+    vector<vector<double> > A(3, vector<double>(2));
     A = {{ 1, 0 }, { 0, 1 }, { 0, -1 },};
-    vector<vector<int> > B(3, vector<int>(2));
+    vector<vector<double> > B(3, vector<double>(2));
     B = {{ 0, 0 }, { 1, 1 }, { 1, -1 },};
 
     // Translating Robot toward the obstacle
