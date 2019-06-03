@@ -50,6 +50,44 @@ vector<vector<int> > minkowski_sum(vector<vector<int> > A, vector<vector<int> > 
     return C;
 }
 
+// Compute the centroid of a polygon
+vector<double> compute_centroid(vector<vector<double> > vec)
+{
+    vector<double> centroid(2);
+    double centroid_x=0, centroid_y=0;
+    for (int i = 0; i < vec.size(); i++) {
+        centroid_x += vec[i][0];
+        centroid_y += vec[i][1];
+    }
+    centroid[0] = centroid_x / vec.size();
+    centroid[1] = centroid_y / vec.size();
+    return centroid;
+}
+
+// Compute the angle of each point with respect to the centroid and append in a new column
+// Resulting vector[xi,yi,anglei]
+vector<vector<double> > compute_angle(vector<vector<double> > vec)
+{
+    vector<double> centroid = compute_centroid(vec);
+    double prec = 0.0001;
+    for (int i = 0; i < vec.size(); i++) {
+        double dy = vec[i][1] - centroid[1];
+        double dx = vec[i][0] - centroid[0];
+        // If the point is the centroid then delete it from the vector
+        if (abs(dx) < prec && abs(dy) < prec) {
+            vec.erase(vec.begin() + i);
+        }
+        else {
+            // compute the centroid-point angle
+            double theta = (atan2(dy, dx) * 180) / M_PI;
+            // append it to the vector in a 3rd column
+            vec[i].push_back(theta);
+        }
+    }
+    return vec;
+}
+
+
 int main()
 {
     // Define the coordinates of triangle A and B using 2D vectors
